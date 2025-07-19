@@ -1,0 +1,56 @@
+{
+  "name": "OpenVoice Voice Cloning Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.9-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    }
+  },
+  "forwardPorts": [7860, 8000, 8888],
+  "portsAttributes": {
+    "7860": {
+      "label": "OpenVoice Gradio Interface",
+      "onAutoForward": "openBrowser"
+    },
+    "8888": {
+      "label": "Jupyter Notebook",
+      "onAutoForward": "ignore"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup-openvoice.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+        "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+        "python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+        "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+        "python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+        "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+        "python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+        "python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+        "python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.isort",
+        "ms-python.black-formatter",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-vscode.vscode-json"
+      ]
+    }
+  }
+}
